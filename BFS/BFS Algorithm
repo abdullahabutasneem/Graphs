@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>edgelist[100002];
+int d[100002];
+
+void bfs(int s)
+{
+	memset(d,-1,sizeof(d));
+	queue<int>q;
+	d[s] = 0;
+	q.push(s);
+	while(q.size()>0)
+	{
+		int u = q.front();
+		q.pop();
+		for(int i=0;i<edgelist[u].size();i++)
+		{
+			int v = edgelist[u][i];
+			if(d[v]==-1)
+			{
+				d[v] = d[u]+1;
+				q.push(v);
+			}
+		}
+	}
+}
