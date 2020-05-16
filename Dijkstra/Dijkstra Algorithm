@@ -1,0 +1,31 @@
+vector<pair<int,int>> edge[100010];
+ll dis[100010];
+int n,m;
+void dijkstra(int s)
+{
+    
+    multiset<pair<int,int>> mul;
+    mul.insert({0, 1});     ///pair with distance - node
+
+    while(!mul.empty())
+    {
+        pair<int,int> p = *mul.begin();
+        int node = p.second;
+        int weight = p.first;
+        mul.erase(mul.begin());
+
+
+            fo(i, edge[node].size())
+            {
+                int n = edge[node][i].first;
+                int w = edge[node][i].second;
+
+                if(dis[node]+w < dis[n]){
+                    dis[n] = dis[node] +w;
+                    parent[n] = node;
+                    mul.insert({dis[n], n});
+                }
+            }
+
+    }
+}
